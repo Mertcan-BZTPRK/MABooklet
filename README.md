@@ -8,6 +8,7 @@
 [![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.7.2-purple.svg)](https://dotnet.microsoft.com/download/dotnet-framework/net472)
 [![Platform](https://img.shields.io/badge/Platform-Windows-0078d7.svg)](https://www.microsoft.com/windows)
 [![WPF](https://img.shields.io/badge/UI-WPF-green.svg)](https://learn.microsoft.com/dotnet/desktop/wpf/)
+[![Download](https://img.shields.io/badge/⬇_Download-Installer-brightgreen.svg)](https://github.com/Mertcan-BZTPRK/MABooklet/releases)
 
 **MABooklet** is an all-in-one PDF toolkit for creating print-ready booklets, reading PDFs with AI-powered text-to-speech, merging & splitting PDF files — all wrapped in a modern dark-themed WPF interface.
 
@@ -18,6 +19,19 @@
 ---
 
 ## 🇬🇧 English
+
+### 📥 Download & Installation
+
+Don't want to build from source? Download the ready-to-use installer:
+
+1. Go to the [**Releases**](https://github.com/Mertcan-BZTPRK/MABooklet/releases) page
+2. Download **`MABooklet_Kurulum.exe`** from the latest release
+3. Run the installer (all dependencies and engines are included automatically)
+4. Click the **MABooklet** icon on your desktop and enjoy! 🎉
+
+> 💡 No Python, no Visual Studio, no extra setup needed — just install and use.
+
+---
 
 ### ✨ Features
 
@@ -62,7 +76,7 @@
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/MABooklet.git
+git clone https://github.com/Mertcan-BZTPRK/MABooklet.git
 cd MABooklet
 ```
 
@@ -161,6 +175,19 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ## 🇹🇷 Türkçe
 
+### 📥 Kurulum & İndirme
+
+Kaynak koddan derlemekle uğraşmak istemiyorsanız, doğrudan kurulabilir versiyonu indirebilirsiniz:
+
+1. [**Releases**](https://github.com/Mertcan-BZTPRK/MABooklet/releases) sayfasına gidin
+2. Son sürümdeki **`MABooklet_Kurulum.exe`** dosyasını indirin
+3. Kurulumu çalıştırın (tüm bağımlılıklar ve motorlar otomatik olarak kurulacaktır)
+4. Masaüstündeki **MABooklet** simgesine tıklayarak keyfini çıkarın! 🎉
+
+> 💡 Python, Visual Studio veya ekstra kurulum gerekmez — sadece kurun ve kullanın.
+
+---
+
 ### ✨ Özellikler
 
 | Özellik | Açıklama |
@@ -204,7 +231,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 #### 1. Depoyu Klonlayın
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/MABooklet.git
+git clone https://github.com/Mertcan-BZTPRK/MABooklet.git
 cd MABooklet
 ```
 
