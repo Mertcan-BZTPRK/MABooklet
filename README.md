@@ -46,14 +46,10 @@ Don't want to build from source? Download the ready-to-use installer:
 
 ### 📸 Screenshots
 
-> 💡 *Add screenshots to a `screenshots/` folder and uncomment the lines below:*
-
-<!--
 ![Main Window](screenshots/main.png)
 ![Reader Window](screenshots/reader.png)
 ![Merger Window](screenshots/merger.png)
 ![Splitter Window](screenshots/splitter.png)
--->
 
 ### 🛠 Tech Stack
 
@@ -201,14 +197,10 @@ Kaynak koddan derlemekle uğraşmak istemiyorsanız, doğrudan kurulabilir versi
 
 ### 📸 Ekran Görüntüleri
 
-> 💡 *Ekran görüntülerini `screenshots/` klasörüne ekleyin ve aşağıdaki satırları aktifleştirin:*
-
-<!--
 ![Ana Pencere](screenshots/main.png)
 ![Okuyucu Penceresi](screenshots/reader.png)
 ![Birleştirici Penceresi](screenshots/merger.png)
 ![Ayırıcı Penceresi](screenshots/splitter.png)
--->
 
 ### 🛠 Teknoloji Yığını
 
