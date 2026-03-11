@@ -24,7 +24,7 @@
 
 Don't want to build from source? Download the ready-to-use installer:
 
-1. Go to the [**Releases**](https://github.com/Mertcan-BZTPRK/MABooklet/releases) page
+1. Go to the  <a href="https://mabtech.me/Home/ProjectDetail/8" target="_blank">mabtech.me</a> page
 2. Download **`MABooklet_Kurulum.exe`** from the latest release
 3. Run the installer (all dependencies and engines are included automatically)
 4. Click the **MABooklet** icon on your desktop and enjoy! 🎉
@@ -175,7 +175,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 Kaynak koddan derlemekle uğraşmak istemiyorsanız, doğrudan kurulabilir versiyonu indirebilirsiniz:
 
-1. [**Releases**](https://github.com/Mertcan-BZTPRK/MABooklet/releases) sayfasına gidin
+1. <a href="https://mabtech.me/Home/ProjectDetail/8" target="_blank">mabtech.me</a> sayfasına gidin
 2. Son sürümdeki **`MABooklet_Kurulum.exe`** dosyasını indirin
 3. Kurulumu çalıştırın (tüm bağımlılıklar ve motorlar otomatik olarak kurulacaktır)
 4. Masaüstündeki **MABooklet** simgesine tıklayarak keyfini çıkarın! 🎉
