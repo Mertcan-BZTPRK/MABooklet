@@ -1,0 +1,12 @@
+11:47:09:594 [CRITICAL]	SharedConnection - Failed to open WinHTTP Session. Parametre hatalı.
+, last error code = 87 
+11:47:09:594 [ERROR]	Failed to Configure Secure Protocols. WinHTTP Incorrect Handle Type. last error code = 12018 
+11:59:21:431 [CRITICAL]	SharedConnection - Failed to open WinHTTP Session. Parametre hatalı.
+, last error code = 87 
+11:59:21:431 [ERROR]	Failed to Configure Secure Protocols. WinHTTP Incorrect Handle Type. last error code = 12018 
+13:15:59:525 [CRITICAL]	SharedConnection - Failed to open WinHTTP Session. Parametre hatalı.
+, last error code = 87 
+13:15:59:525 [ERROR]	Failed to Configure Secure Protocols. WinHTTP Incorrect Handle Type. last error code = 12018 
+13:21:12:540 [CRITICAL]	SharedConnection - Failed to open WinHTTP Session. Parametre hatalı.
+, last error code = 87 
+13:21:12:540 [ERROR]	Failed to Configure Secure Protocols. WinHTTP Incorrect Handle Type. last error code = 12018 

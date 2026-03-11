@@ -1,0 +1,248 @@
+﻿<Window x:Class="MABooklet.ReaderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MAB Reader" Height="750" Width="1300"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="NavBtn">
+            <Setter Property="Background" Value="#66000000"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" CornerRadius="30" Background="{TemplateBinding Background}" Width="60" Height="60">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-6,0,0"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#CC007ACC"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="10" Background="{StaticResource BgDark}" BorderBrush="{StaticResource BorderColor}" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="20" ShadowDepth="10" Opacity="0.5"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="Transparent" MouseLeftButtonDown="TitleBar_MouseDown">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0,0,0">
+                    <Border Width="4" Height="20" Background="{StaticResource AccentColor}" CornerRadius="2" Margin="0,0,8,0"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="18">
+                        <Hyperlink NavigateUri="https://www.linkedin.com/in/mertcan-boztoprak"
+                                   RequestNavigate="Hyperlink_RequestNavigate"
+                                   TextDecorations="None"
+                                   Foreground="{StaticResource TextMain}">
+                            <Run Text="MAB TECH" FontWeight="Bold"/>
+                            <Run Text=" | " Foreground="{StaticResource TextMuted}"/>
+                            <Run Text="READER"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+                    <Button Content="💬 Asistan" Click="btnToggleChat_Click" Width="180" Height="50" Style="{StaticResource ModernBtn}" Margin="0,0,10,0"/>
+
+                    <Button Content="—" Width="35" Height="30" Style="{StaticResource ControlBtn}" Click="btnMinimize_Click"/>
+                    <Button x:Name="maximizeBut" Content="⬛" Width="35" Height="30" Style="{StaticResource ControlBtn}" Click="btnMaximize_Click" FontSize="14"/>
+                    <Button Content="✕" Width="35" Height="30" Style="{StaticResource ControlBtn}" Click="btnClose_Click" Foreground="#ff5f56"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="15,0,15,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                    <TextBlock Text="🎙 SES MODELİ:" Foreground="{StaticResource TextMuted}" FontWeight="Bold" Margin="0,0,0,5" FontSize="11"/>
+                    <ComboBox x:Name="cmbVoices" Height="35" Style="{StaticResource ModernCombo}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="lblSpeed" Text="⚡ HIZ: Normal" Foreground="{StaticResource TextMuted}" FontWeight="Bold" Margin="0,0,0,5" FontSize="11"/>
+                    <Slider x:Name="sliderSpeed" Minimum="-10" Maximum="10" Value="0" ValueChanged="sliderSpeed_ValueChanged" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2" Background="#1a1a1a" ClipToBounds="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <ScrollViewer x:Name="pdfScroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly">
+                        <Viewbox Stretch="Uniform" Margin="60,0">
+                            <Grid x:Name="pdfContentGrid">
+                                <Image x:Name="pdfImage" Stretch="Fill"/>
+                                <Canvas x:Name="highlightCanvas" IsHitTestVisible="False"/>
+                            </Grid>
+                        </Viewbox>
+                    </ScrollViewer>
+
+                    <Button x:Name="btnPrevPageOverlay" Content="❮" HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                            Margin="30,0,0,30" Style="{StaticResource NavBtn}" Click="btnPrevPage_Click" Visibility="Collapsed"/>
+
+                    <Button x:Name="btnNextPageOverlay" Content="❯" HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                            Margin="0,0,30,30" Style="{StaticResource NavBtn}" Click="btnNextPage_Click" Visibility="Collapsed"/>
+                </Grid>
+                <Border x:Name="chatPanel" Grid.Column="1" Width="0" Background="#1E1E1E" BorderBrush="#333333" BorderThickness="1,0,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Background="#252526" BorderBrush="#333333" BorderThickness="0,0,0,1">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0">
+                                <TextBlock Text="✨" FontSize="20" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <StackPanel>
+                                    <TextBlock Text="AI Asistan" Foreground="White" FontWeight="Bold" FontSize="15"/>
+                                    <TextBlock Text="Gemini Flash 2.0" Foreground="#888" FontSize="11"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <ScrollViewer Grid.Row="1" x:Name="chatScroller" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10">
+                            <ItemsControl x:Name="listChat">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,5" HorizontalAlignment="{Binding Alignment}">
+                                            <Border Background="{Binding BgColor}" CornerRadius="{Binding CornerRadius}" Padding="12,8" MaxWidth="260">
+                                                <Border.Effect>
+                                                    <DropShadowEffect ShadowDepth="1" BlurRadius="5" Opacity="0.3"/>
+                                                </Border.Effect>
+                                                <StackPanel>
+                                                    <RichTextBox x:Name="rtbContent"
+                                                     Loaded="RichTextBox_Loaded"
+                                                     Background="Transparent" 
+                                                     BorderThickness="0" 
+                                                     Foreground="{Binding TextColor}" 
+                                                     FontFamily="Segoe UI"
+                                                     FontSize="13"
+                                                     IsReadOnly="True"
+                                                     IsDocumentEnabled="True">
+                                                        <RichTextBox.Resources>
+                                                            <Style TargetType="{x:Type Paragraph}">
+                                                                <Setter Property="Margin" Value="0"/>
+                                                            </Style>
+                                                        </RichTextBox.Resources>
+                                                    </RichTextBox>
+
+                                                    <TextBlock Text="{Binding Time}" FontSize="10" Foreground="#AAA" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                        <Border Grid.Row="2" Background="#252526" Padding="10,5">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <RadioButton x:Name="rbShort" Content="Özet" GroupName="Detail" Foreground="White" Margin="0,0,15,0" IsChecked="True"/>
+                                <RadioButton x:Name="rbLong" Content="Detaylı" GroupName="Detail" Foreground="White"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Grid Grid.Row="3" Background="#1E1E1E" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" CornerRadius="20" Background="#2D2D30" BorderBrush="#444" BorderThickness="1">
+                                <TextBox x:Name="txtChatInput" 
+                             Background="Transparent" 
+                             Foreground="White" 
+                             CaretBrush="White"
+                             BorderThickness="0" 
+                             VerticalContentAlignment="Center" 
+                             Padding="15,0"
+                             FontSize="14"
+                             Text="Notlarda ara..." 
+                             KeyDown="txtChatInput_KeyDown"/>
+                            </Border>
+
+                            <Button x:Name="btnSendChat" Grid.Column="1" Content="➤" 
+                        Background="Transparent" Foreground="#005F73" 
+                        FontSize="24" Click="btnSendChat_Click" 
+                        BorderThickness="0" Cursor="Hand"
+                        Style="{StaticResource NavBtn}"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <StackPanel Grid.Row="3" Margin="15,5,15,5">
+                <TextBlock x:Name="lblStatus" Text="Hazır" Foreground="{StaticResource AccentColor}" 
+                           HorizontalAlignment="Center" Margin="0,0,0,2" FontSize="13" FontWeight="SemiBold"/>
+
+                <TextBlock x:Name="lblPercentage" Text="%0" Foreground="White" 
+                           HorizontalAlignment="Center" FontSize="11" Margin="0,0,0,3" Visibility="Collapsed"/>
+
+                <Border CornerRadius="4" Height="6" ClipToBounds="True" Background="{StaticResource BgLight}" 
+                        Visibility="{Binding Visibility, ElementName=pBar}">
+                    <ProgressBar x:Name="pBar" Height="6" IsIndeterminate="True" 
+                                 Foreground="{StaticResource AccentColor}" Background="Transparent" BorderThickness="0" 
+                                 Visibility="Collapsed" Minimum="0" Maximum="100"/>
+                </Border>
+            </StackPanel>
+
+            <Grid Grid.Row="4" Margin="15,5,15,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button x:Name="btnBack" Content="⇐ Booklet" Width="100" Height="40" Foreground="Black" 
+                            Click="btnBack_Click" Margin="0,0,10,0" Style="{StaticResource ModernBtn}" Background="#FF1FB1D1"/>
+
+                    <Button Content="📂 Aç" Click="btnLoad_Click" Width="80" Height="40" Margin="0,0,10,0" Style="{StaticResource ModernBtn}"/>
+                    <ComboBox x:Name="cmbPages" Width="130" Height="40" SelectionChanged="cmbPages_SelectionChanged" IsEnabled="False" Style="{StaticResource ModernCombo}"/>
+                    <Border CornerRadius="5" Background="#333" BorderBrush="#555" BorderThickness="1" Height="40" Width="70" Margin="5,0,0,0">
+                        <TextBox x:Name="txtGoToPage" Background="Transparent" Foreground="White" BorderThickness="0"
+                                 Tag="Git..." KeyDown="txtGoToPage_KeyDown"
+                                 VerticalContentAlignment="Center" Padding="5,0" ToolTip="Sayfa numarası yazıp Enter'a bas"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button x:Name="btnPlay" Content="▶ OKU" Width="90" Height="40" Background="{StaticResource AccentColor}" Foreground="Black" 
+                            Click="btnPlay_Click" Margin="0,0,10,0" IsEnabled="False" Style="{StaticResource ModernBtn}"/>
+
+                    <Button x:Name="btnPause" Content="⏸ DUR" Width="90" Height="40" Background="{StaticResource AccentOrange}" Foreground="White" 
+                            Click="btnPause_Click" IsEnabled="False" Style="{StaticResource ModernBtn}" Margin="0,0,10,0"/>
+
+                    <Button x:Name="btnDowloand" Content="📥 İNDİR" Width="100" Height="40" Foreground="White" 
+                            Click="btnDowloand_Click" IsEnabled="False" Style="{StaticResource ModernBtn}" Background="#FF78D64F"/>
+
+                    <Button Content="Kapat" Background="#d93025" Click="btnClose_Click" Width="70" Height="40" Margin="10,0,0,0" Style="{StaticResource ModernBtn}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

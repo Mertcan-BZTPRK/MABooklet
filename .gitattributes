@@ -1,0 +1,14 @@
+# Auto-detect text files and normalize line endings to CRLF on checkout (Windows)
+* text=auto eol=crlf
+
+# Force LF for shell/python scripts (cross-platform compatibility)
+*.py text eol=lf
+*.sh text eol=lf
+
+# Binary files
+*.ico binary
+*.png binary
+*.jpg binary
+*.exe binary
+*.dll binary
+*.pdf binary

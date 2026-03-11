@@ -1,0 +1,37 @@
+﻿<Window x:Class="MABooklet.DownloadRangeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Aralık İndir" Height="250" Width="400"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+
+    <Border CornerRadius="15" Background="#202124" BorderBrush="#555" BorderThickness="1">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="📥 Toplu Ses İndirme" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <TextBlock Text="Sayfa Aralığını Seç:" Foreground="#AAA" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ComboBox x:Name="cmbStart" Width="80" Height="30" Style="{StaticResource ModernCombo}"/>
+                    <TextBlock Text="  —  " Foreground="White" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmbEnd" Width="80" Height="30" Style="{StaticResource ModernCombo}"/>
+                </StackPanel>
+
+                <TextBlock x:Name="lblInfo" Text="Toplam: 0 Sayfa" Foreground="#888" FontSize="12" 
+                           HorizontalAlignment="Center" Margin="0,10,0,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="İPTAL" Width="100" Height="35" Margin="5" Style="{StaticResource ModernBtn}" Background="#555" Click="btnCancel_Click"/>
+                <Button Content="İNDİR" Width="100" Height="35" Margin="5" Style="{StaticResource ModernBtn}" Background="#FF1FB1D1" Click="btnDownload_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,120 @@
+﻿<Window x:Class="MABooklet.MergerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PDF Birleştirici" Height="550" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+
+    <Border CornerRadius="15" Background="{StaticResource BgDark}" BorderBrush="{StaticResource BorderColor}" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="25" ShadowDepth="10" Opacity="0.5" Color="Black"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="Transparent" MouseLeftButtonDown="TitleBar_MouseDown">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
+                    <Border Width="4" Height="20" Background="{StaticResource AccentColor}" CornerRadius="2" Margin="0,0,8,0"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="14">
+                        <Hyperlink NavigateUri="https://www.linkedin.com/in/mertcan-boztoprak"
+                                   RequestNavigate="Hyperlink_RequestNavigate"
+                                   TextDecorations="None"
+                                   Foreground="{StaticResource TextMain}">
+                            <Run Text="MAB TECH" FontWeight="Bold"/>
+                            <Run Text=" | " Foreground="{StaticResource TextMuted}"/>
+                            <Run Text="BİRLEŞTİRİCİ"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+                    <Button Content="—" Width="35" Height="30" Style="{StaticResource ControlBtn}" Click="btnMinimize_Click"/>
+                    <Button Content="✕" Width="35" Height="30" Style="{StaticResource ControlBtn}" Click="btnClose_Click" Foreground="#ff5f56"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" CornerRadius="10" Background="{StaticResource BgLight}" BorderBrush="{StaticResource BorderColor}" BorderThickness="1">
+                    <Grid>
+                        <ListBox x:Name="lstFiles" Background="Transparent" BorderThickness="0" 
+                                 AllowDrop="True" SelectionMode="Extended"
+                                 Drop="lstFiles_Drop" DragEnter="lstFiles_DragEnter"
+                                 PreviewMouseLeftButtonDown="lstFiles_PreviewMouseLeftButtonDown"
+                                 MouseMove="lstFiles_MouseMove"
+                                 Foreground="{StaticResource TextMain}" FontSize="14" Padding="10">
+
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Padding" Value="10,5"/>
+                                    <Setter Property="Margin" Value="0,2"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListBoxItem">
+                                                <Border x:Name="Bd" CornerRadius="5" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsSelected" Value="true">
+                                                        <Setter TargetName="Bd" Property="Background" Value="#CCE8FF"/>
+                                                        <Setter Property="Foreground" Value="Black"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                        <Setter TargetName="Bd" Property="Background" Value="#E5F3FF"/>
+                                                        <Setter Property="Foreground" Value="Black"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="::" Margin="0,0,10,0" Foreground="#AAA" Cursor="SizeAll" FontWeight="Bold" ToolTip="Sürükleyerek Taşı"/>
+                                        <TextBlock Text="📄" Margin="0,0,5,0"/>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <TextBlock x:Name="lblHint" Text="PDF Dosyalarını Buraya Sürükle" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                   Foreground="#888" IsHitTestVisible="False"/>
+                    </Grid>
+                </Border>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50">
+                    <Button Content="▲" Height="40" Width="50" Margin="0,0,0,10" Style="{StaticResource ModernBtn}" Click="btnUp_Click" ToolTip="Yukarı Taşı"/>
+                    <Button Content="▼" Height="40" Width="50" Margin="0,0,0,30" Style="{StaticResource ModernBtn}" Click="btnDown_Click" ToolTip="Aşağı Taşı"/>
+                    <Button Content="❌" Height="40" Width="50" Style="{StaticResource ModernBtn}" Background="#d93025" Click="btnRemove_Click" ToolTip="Listeden Kaldır"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="20,0,20,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="⇐ Booklet" Height="45" Style="{StaticResource ModernBtn}" Background="#FF1FB1D1" Click="btnBack_Click" Grid.ColumnSpan="2" Margin="0,2,0,2" Width="100" Foreground="Black" HorizontalAlignment="Left"/>
+
+                <Button Grid.Column="2" Content="BİRLEŞTİR VE KAYDET" Width="180" Height="45" 
+                        Style="{StaticResource ModernBtn}" Background="#FF5B2C6F" Click="btnMerge_Click"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
