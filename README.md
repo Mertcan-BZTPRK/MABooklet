@@ -303,6 +303,6 @@ Bu proje **MIT Lisansı** ile lisanslanmıştır — detaylar için [LICENSE](LI
 
 <div align="center">
 
-**Made with ❤️ by [MAB TECH](https://www.linkedin.com/in/mertcan-boztoprak)**
+**Made with ❤️ by [Mertcan BOZTOPRAK](https://www.linkedin.com/in/mertcan-boztoprak)**
 
 </div>
