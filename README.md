@@ -319,7 +319,9 @@ Katkılarınızı bekliyoruz! Yapmanız gerekenler:
 Bu proje **MIT Lisansı** ile lisanslanmıştır — detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
 ---
-
+<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=A855F7&height=120&section=footer" width="100%" style="display: block; margin: 0; padding: 0; border: none; margin-bottom: -5px;"/>
+</div>
 <div align="center">
 
 **Made with ❤️ by [Mertcan BOZTOPRAK](https://www.linkedin.com/in/mertcan-boztoprak)**
